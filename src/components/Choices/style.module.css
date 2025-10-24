@@ -1,0 +1,30 @@
+.choicesWrap {
+    width: 55%;
+    
+    .choice {
+        position: relative;
+        background-color: #FF6E6E;
+
+        .triangle {
+            position: absolute;
+            width: 20px;
+            height: 28px;
+            background-color: #FF6E6E;
+            clip-path: polygon(0 0, 0 100%, 100% 50%);
+            top: 50%;
+            left: .5rem;
+            transform: translateY(-50%);
+            transition: all .4s;
+        }
+
+        p {
+            margin: 0;
+            padding: .5rem;
+            color: white;
+    
+        }
+        &:hover .triangle{
+            background-color: white;
+        }
+    }
+}

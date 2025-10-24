@@ -1,0 +1,32 @@
+.textBox {
+    position: relative;
+    width: 90%;
+    min-height: 225px;
+    background-color: #FFB168;
+
+    p {
+        padding: .5rem;
+    }
+    .triangle {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        width: 36px;
+        height: 26px;
+        background-color: black;
+        clip-path: polygon(50% 100%, 0 0, 100% 0);
+        animation: infinite tri 3s;
+    }
+}
+
+@keyframes tri{
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
