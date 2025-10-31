@@ -1,18 +1,19 @@
-import { useState } from 'react'
 import styles from './style.module.css'
 
-export default function EventInput() {
-    const [state, setState] = useState<string>('')
+type EventInputProps = {
+    value: string
+    onChange: (newValue: string) => void
+    className?:string
+}
 
+export default function EventInput({ value, onChange }: EventInputProps) {
     return (
-        <>
-            <div className={styles.inputWrap}>
-                <input
-                    type="text"
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                />
-            </div>
-        </>
+        <div className={styles.inputWrap}>
+            <textarea
+                className={styles.textArea}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+            />
+        </div>
     )
 }
