@@ -1,3 +1,4 @@
+/* 👤 人 */
 .circle {
     width: 124px;
     height: 124px;
@@ -21,6 +22,7 @@
     align-items: center;
 }
 
+/* 🟫 メインの四角 */
 .rectangle {
     width: 392px;
     height: 200px;
@@ -30,14 +32,7 @@
     border-radius: 8px;
 }
 
-.countBtn {
-    display: block;
-    margin: 24px auto 0 auto;
-    font-size: 24px;
-    background-color: #d9d9d9;
-    border-radius: 0%;
-}
-
+/* 📦 テキストボックス位置 */
 .textBoxWrapper {
     position: absolute;
     bottom: 15%;
@@ -47,6 +42,7 @@
     z-index: 10;
 }
 
+/* 🧍‍♀️ 入力 */
 .inputSection {
     position: absolute;
     top: 20px;
@@ -67,7 +63,7 @@
 }
 
 .nextBtn {
-    background-color: #FFB168;
+    background-color: #ffb168;
     border: none;
     border-radius: 6px;
     padding: 8px 16px;
@@ -75,6 +71,7 @@
     cursor: pointer;
 }
 
+/* ✅ テキスト＋選択肢配置共通 */
 .confirmSection {
     position: relative;
     width: 100%;
@@ -88,4 +85,23 @@
     transform: translateX(-50%);
     z-index: 30;
     width: 80%;
+}
+
+/* 🔘 ボタン */
+.countBtn {
+    display: block;
+    margin: 24px auto 0 auto;
+    font-size: 24px;
+    background-color: #d9d9d9;
+    border-radius: 0%;
+}
+
+/* ✅ 完了画面 */
+.completeSection {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    z-index: 10;
 }
