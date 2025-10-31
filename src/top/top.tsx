@@ -50,9 +50,7 @@ function TOP() {
                 <div className={styles.triangle}></div>
             </div>
 
-            {/* 🟫 メインの四角 */}
             <div className={styles.rectangle}>
-                {/* ✅ 人タップ時の「あなたは今週〜」部分 */}
                 {showReport && (
                     <div className={styles.confirmSection}>
                         {showDetail && (
@@ -76,7 +74,6 @@ function TOP() {
                     </div>
                 )}
 
-                {/* 🧩 通常ステップ */}
                 {step === 1 && (
                     <div className={styles.textBoxWrapper}>
                         <TextBox
@@ -122,7 +119,6 @@ function TOP() {
                 )}
             </div>
 
-            {/* 🔘 最初のボタン */}
             {step === 0 && (
                 <button className={styles.countBtn} type="button" onClick={handleClick}>
                     カウントする
