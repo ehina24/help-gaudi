@@ -7,7 +7,7 @@ import Choices from '../components/Choices/Choices'
 function TOP() {
     const [step, setStep] = useState(0)
     const [inputText, setInputText] = useState('')
-    const [count, setCount] = useState(3)
+    const count = 3;
     const [showReport, setShowReport] = useState(false)
     const [showDetail, setShowDetail] = useState(false)
 
@@ -44,15 +44,12 @@ function TOP() {
 
     return (
         <>
-            {/* 👤 人 */}
             <div className={styles.person} onClick={handlePersonClick}>
                 <div className={styles.circle}></div>
                 <div className={styles.triangle}></div>
             </div>
 
-            {/* 🟫 メインの四角 */}
             <div className={styles.rectangle}>
-                {/* ✅ 人タップ時の「あなたは今週〜」部分 */}
                 {showReport && (
                     <div className={styles.confirmSection}>
                         {showDetail && (
@@ -76,7 +73,6 @@ function TOP() {
                     </div>
                 )}
 
-                {/* 🧩 通常ステップ */}
                 {step === 1 && (
                     <div className={styles.textBoxWrapper}>
                         <TextBox
@@ -86,34 +82,52 @@ function TOP() {
                     </div>
                 )}
 
-                {step === 2 && (
-                    <div className={styles.inputSection}>
-                        <EventInput
-                            value={inputText}
-                            onChange={setInputText}
-                            className={styles.movableInput}
-                        />
-                        <button className={styles.nextBtn} onClick={handleConfirm}>
-                            入力完了
-                        </button>
-                    </div>
-                )}
+{step === 2 && (
+    <div className={styles.inputSection}>
+        <EventInput
+            value={inputText}
+            onChange={setInputText}
+            className={styles.movableInput}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault()
+                    handleConfirm()
+                }
+            }}
+        />
+    </div>
+)}
 
-                {step === 3 && (
-                    <div className={styles.confirmSection}>
-                        <div className={styles.choiceWrapper}>
-                            <Choices
-                                choicesText={['はい', 'いいえ']}
-                                onClick={(text) =>
-                                    text === 'はい' ? setStep(4) : setStep(2)
-                                }
-                            />
-                        </div>
-                        <div className={styles.textBoxWrapper}>
-                            <TextBox text="よろしいでしょうか？" onClick={() => {}} />
-                        </div>
-                    </div>
-                )}
+{step === 3 && (
+    <div className={styles.confirmSection}>
+        <div className={styles.inputSection}>
+            <EventInput
+                value={inputText}
+                onChange={setInputText}
+                className={styles.movableInput}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault()
+                        handleConfirm()
+                    }
+                }}
+            />
+        </div>
+
+        <div className={styles.choiceWrapper}>
+            <Choices
+                choicesText={['はい', 'いいえ']}
+                onClick={(text) =>
+                    text === 'はい' ? setStep(4) : setStep(2)
+                }
+            />
+        </div>
+
+        <div className={styles.textBoxWrapper}>
+            <TextBox text="よろしいでしょうか？" onClick={() => {}} />
+        </div>
+    </div>
+)}
 
                 {step === 4 && (
                     <div className={styles.completeSection}>
@@ -122,7 +136,6 @@ function TOP() {
                 )}
             </div>
 
-            {/* 🔘 最初のボタン */}
             {step === 0 && (
                 <button className={styles.countBtn} type="button" onClick={handleClick}>
                     カウントする
