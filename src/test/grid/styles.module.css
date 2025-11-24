@@ -1,0 +1,11 @@
+.grid {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    border: 1px solid tomato;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr */
+
+    .col {
+        border: 1px solid skyblue;
+    }
+}
