@@ -2,11 +2,21 @@ import './popup.css';
 
 export default function Popup(){
     return(
-        <div>
-            <h1>こんにちは</h1>
-            <p className="message"></p>
-            <button>はい</button>
-            <button>いいえ</button>
+        <div className="messageBox">
+            <p>えぶりでいホスト読みましたか？今週も面白かったですね！</p>
+            <div className="messageRes">
+
+                <div>
+                    <div>
+                        <div className="triangle"></div>
+                        <button>はい</button>
+                    </div>
+                    <div>
+                        <div className="triangle"></div>
+                        <button>いいえ</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
