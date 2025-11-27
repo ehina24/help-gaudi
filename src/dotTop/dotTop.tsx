@@ -30,12 +30,14 @@ export default function DotTop(){
     };
 
     return(
-        <div className={styles.container}>
-            {rows.map((row,rowIndex)=>
-                row.map((v,colIndex)=>(
-                    <div key={`${rowIndex}-${colIndex}`} className={getClass(v)} />
-                ))
-            )}
+        <div className={styles.bgWrapper}>
+            <div className={styles.container}>
+                {rows.map((row,rowIndex)=>
+                    row.map((v,colIndex)=>(
+                        <div key={`${rowIndex}-${colIndex}`} className={getClass(v)} />
+                    ))
+                )}
+            </div>
         </div>
     )
 }
