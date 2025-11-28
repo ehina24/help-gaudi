@@ -1,12 +1,14 @@
+import './App.css'
+import MainUi from './dotTop/mainUi'
 import {Route, Routes } from "react-router-dom"
-import TOP from "./top/top";
 
 function App() {
 
+function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<TOP />}/>
+        <Route path="/" element={<MainUi />}/>
       </Routes>
     </>
   )
