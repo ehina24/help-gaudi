@@ -1,8 +1,6 @@
 import './App.css'
-import MainUi from './dotTop/mainUi'
 import {Route, Routes } from "react-router-dom"
-
-function App() {
+import MainUi from './dotTop/mainUi'
 
 function App() {
   return (
