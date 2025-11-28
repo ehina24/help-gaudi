@@ -1,11 +1,12 @@
 import './popup.css';
 
+
 export default function Popup(){
     return(
         <div className="messageBox">
             <p>えぶりでいホスト読みましたか？今週も面白かったですね！</p>
-            <div className="messageRes">
 
+            <div className="response">
                 <div>
                     <div>
                         <div className="triangle"></div>
@@ -17,6 +18,7 @@ export default function Popup(){
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
