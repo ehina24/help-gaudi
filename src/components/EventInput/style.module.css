@@ -1,18 +1,18 @@
 .inputWrap {
-    width: 90%;
-    min-height: 3rem;
-    background-color: #FFB168;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+}
 
-    input {
-        width: 90%;
-        height: 100%;
-        margin: 0 auto;
-        font-size: 24px;
-        border: none;
-        outline: none;
-        background-color: #FFB168;
-    }
+.textArea {
+    width: 90%;
+    height: 3rem;
+    background-color: #FFB168;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 6px;
+    resize: none;
+    text-align: center;
 }
