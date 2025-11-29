@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api, type User } from "../api";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignIn() {
@@ -9,6 +10,8 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<null | User>(null);
 
+    const navigate = useNavigate()
+
     const onLogin = async () => {
         setMsg("");
         setLoading(true);
@@ -17,6 +20,7 @@ export default function SignIn() {
             const me = await api.me();
             setUser(me);
             setMsg("ログイン成功！");
+            navigate('/')
         } catch (e) {
             setMsg(`ログイン失敗：${e}`);
         } finally {
