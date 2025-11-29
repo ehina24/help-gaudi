@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api, type User } from "../api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 
 export default function SignIn() {
@@ -9,6 +10,7 @@ export default function SignIn() {
     const [msg, setMsg] = useState<string>("");
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<null | User>(null);
+    const { refresh } = useAuth();
 
     const navigate = useNavigate()
 
@@ -19,6 +21,7 @@ export default function SignIn() {
             await api.login(email, password);
             const me = await api.me();
             setUser(me);
+            await refresh(); // AuthProvider側のuserも更新する
             setMsg("ログイン成功！");
             navigate('/')
         } catch (e) {

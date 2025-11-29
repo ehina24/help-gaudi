@@ -1,9 +1,9 @@
-    import { useState } from "react";
-    import DotTop from "./dotTop";
-    import styles from "./ui.module.css";
-    import Popup from "../components/PopUp";
+import { useState } from "react";
+import DotTop from "./dotTop";
+import styles from "./ui.module.css";
+import Popup from "../components/PopUp";
 
-    export default function MainUi() {
+export default function MainUi() {
     const [showInput, setShowInput] = useState(false);
 
     return (
@@ -12,7 +12,7 @@
 
             <button
                 className={styles.homeruButton}
-                onClick={() => setShowInput(true)}
+                onClick={() => setShowInput(!showInput)}
             >
                 自分を褒める
             </button>
@@ -25,4 +25,4 @@
             )}
         </div>
     );
-    }
+}
