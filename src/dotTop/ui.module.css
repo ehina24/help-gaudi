@@ -1,10 +1,10 @@
-    .wrapper {
+.wrapper {
     position: relative;
-    }
+}
 
-    .homeruButton {
+.homeruButton {
     position: absolute;
-    top: 268px;
+    bottom: 9%;
     left: 50%;
     transform: translateX(-50%);
     width: 250px;
@@ -13,13 +13,13 @@
     border: none;
     border-radius: 12px;
     font-size: 20px;
-    }
+}
 
-    .eventInputWrapper {
+.eventInputWrapper {
     position: absolute;
-    top: 80px;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 16px;
-    }
+}
 
