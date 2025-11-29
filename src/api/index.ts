@@ -39,4 +39,6 @@ export const api = {
     request<User>("/me", {
         credentials: "include",
     }),
+
+    logout: () => request<{ ok: true }>("/logout", { method: "POST" }),
 }
