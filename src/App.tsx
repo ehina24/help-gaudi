@@ -8,11 +8,15 @@ import type { JSX } from 'react'
 import { useAuth } from './hooks/useAuth'
 
 function RequireAuth({ children }: { children: JSX.Element }) {
+  // ログイン状態（user）と、確認中かどうか（loading）を取得
   const { user, loading } = useAuth();
 
+  // 認証チェックが終わるまで待つ
   if (loading) return <p>判定中...</p>;
+  // 未ログインならサインイン画面へリダイレクト
   if (!user || !user.id) return <Navigate to="/signIn" replace />;
 
+  // ログイン済みならそのまま子コンポーネントを表示
   return children;
 
     // ログアウトの使い方
