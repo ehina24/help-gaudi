@@ -11,11 +11,11 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();
 
   if (loading) return <p>判定中...</p>;
-  if (!user) return <Navigate to="/signIn" replace />;
+  if (!user || !user.id) return <Navigate to="/signIn" replace />;
 
   return children;
 
-    // 使い方
+    // ログアウトの使い方
     // const { logout } = useAuth();
 
     // const handleLogout = async () => {
