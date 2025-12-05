@@ -1,0 +1,25 @@
+    .wrapper {
+    position: relative;
+    }
+
+    .homeruButton {
+    position: absolute;
+    top: 268px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    padding: 16px;
+    background: #b5ffb2;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    }
+
+    .eventInputWrapper {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    }
+
