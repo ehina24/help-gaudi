@@ -6,6 +6,7 @@ import styles from './styles.module.css'
 import CustomInput from "../components/CustomInput";
 import Button from "../components/Button";
 import IconGroup from "../components/IconGroup";
+import AuthImg from "../components/AuthImg";
 
 
 export default function LogIn() {
@@ -39,9 +40,7 @@ export default function LogIn() {
 
     return(
         <>
-            <div className={styles.imageWrap}>
-
-            </div>
+            <AuthImg />
             <div className={styles.mainContent}>
                 <div className={styles.contentWrap}>
                     <CustomInput label="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} isPass={false} />
