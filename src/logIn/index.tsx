@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { api, type User } from "../api";
+import { api } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import styles from './styles.module.css'
 import CustomInput from "../components/CustomInput";
+import Button from "../components/Button";
 
 
-export default function SignIn() {
+export default function LogIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [msg, setMsg] = useState<string>("");
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState<null | User>(null);
     const { refresh } = useAuth();
     const [conPass, setConPass] = useState<boolean>(false)
     const navigate = useNavigate()
@@ -22,7 +22,9 @@ export default function SignIn() {
         try {
             await api.login(email, password);
             const me = await api.me();
-            setUser(me);
+            if (me) {
+                throw new Error
+            }
             await refresh(); // AuthProvider側のuserも更新する
             setMsg("ログイン成功！");
             navigate('/')
@@ -43,9 +45,18 @@ export default function SignIn() {
                 <div className={styles.contentWrap}>
                     <CustomInput label="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} isPass={false} />
                     <CustomInput label="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} isPass={true} TorP={conPass} onClick={() => setConPass(conPass ? false : true)}/>
-                    <button onClick={onLogin} disabled={loading}>{loading ? "処理中..." : "ログイン"}</button>
-                    {msg && <p>{msg}</p>}
-                    {user?.id}{user?.email}{user?.display_name}
+                    <div>
+                        <Button label={loading ? "処理中..." : "ログイン"} onClick={onLogin} disabled={loading}/>
+                        {msg && <p className={styles.msg}>{msg}</p>}
+                    </div>
+                </div>
+                <div className={styles.externalServicesWrap} style={msg ? {marginTop: '24px'} : {marginTop: '48px'}}>
+                    <img src="google.svg" alt="Google" />
+                    <img src="apple.svg" alt="Google" />
+                    <img src="x.svg" alt="Google" />
+                </div>
+                <div className={styles.btnWrap}>
+                    <Button label={"新規作成へ"} onClick={() => navigate('/signUp')}/>
                 </div>
             </div>
         </>

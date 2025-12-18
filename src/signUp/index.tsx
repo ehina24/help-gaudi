@@ -47,7 +47,7 @@ export default function SignUp() {
             // フォームを軽くリセット
             setPass('')
             setSecondPass('')
-            navigate('/signIn')
+            navigate('/logIn')
         } catch (e) {
             setError(`登録に失敗しました:${e}`)
         } finally {
