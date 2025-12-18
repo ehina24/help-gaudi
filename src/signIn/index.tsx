@@ -2,6 +2,8 @@ import { useState } from "react";
 import { api, type User } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import styles from './styles.module.css'
+import CustomInput from "../components/CustomInput";
 
 
 export default function SignIn() {
@@ -11,7 +13,7 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<null | User>(null);
     const { refresh } = useAuth();
-
+    const [conPass, setConPass] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const onLogin = async () => {
@@ -34,13 +36,17 @@ export default function SignIn() {
 
     return(
         <>
-            <div style={{display:"grid", gap:8, maxWidth:420}}>
-                <h3>ログイン</h3>
-                <input placeholder="メール" value={email} onChange={e=>setEmail(e.target.value)} />
-                <input placeholder="パスワード" type="password" value={password} onChange={e=>setPassword(e.target.value)} />
-                <button onClick={onLogin} disabled={loading}>{loading ? "処理中..." : "ログイン"}</button>
-                {msg && <p>{msg}</p>}
-                {user?.id}{user?.email}{user?.display_name}
+            <div className={styles.imageWrap}>
+
+            </div>
+            <div className={styles.mainContent}>
+                <div className={styles.contentWrap}>
+                    <CustomInput label="メールアドレス" value={email} onChange={(e) => setEmail(e.target.value)} isPass={false} />
+                    <CustomInput label="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} isPass={true} TorP={conPass} onClick={() => setConPass(conPass ? false : true)}/>
+                    <button onClick={onLogin} disabled={loading}>{loading ? "処理中..." : "ログイン"}</button>
+                    {msg && <p>{msg}</p>}
+                    {user?.id}{user?.email}{user?.display_name}
+                </div>
             </div>
         </>
     )
