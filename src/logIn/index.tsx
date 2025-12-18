@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 import styles from './styles.module.css'
 import CustomInput from "../components/CustomInput";
 import Button from "../components/Button";
+import IconGroup from "../components/IconGroup";
 
 
 export default function LogIn() {
@@ -50,10 +51,8 @@ export default function LogIn() {
                         {msg && <p className={styles.msg}>{msg}</p>}
                     </div>
                 </div>
-                <div className={styles.externalServicesWrap} style={msg ? {marginTop: '24px'} : {marginTop: '48px'}}>
-                    <img src="google.svg" alt="Google" />
-                    <img src="apple.svg" alt="Google" />
-                    <img src="x.svg" alt="Google" />
+                <div className={styles.IconGroup}>
+                    <IconGroup msg={msg} />
                 </div>
                 <div className={styles.btnWrap}>
                     <Button label={"新規作成へ"} onClick={() => navigate('/signUp')}/>
