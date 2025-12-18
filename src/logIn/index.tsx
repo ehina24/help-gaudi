@@ -51,7 +51,7 @@ export default function LogIn() {
                     </div>
                 </div>
                 <div className={styles.IconGroup}>
-                    <IconGroup msg={msg} />
+                    <IconGroup msg={msg} isLogin={true} />
                 </div>
                 <div className={styles.btnWrap}>
                     <Button label={"新規作成へ"} onClick={() => navigate('/signUp')}/>
