@@ -2,4 +2,8 @@
     width: 100%;
     height: 40vh;
     background-color: #D9D9D9;
+
+    /* 仮置き */
+    background-image: url(../../../public/authImg.svg);
+    background-position: center;
 }
