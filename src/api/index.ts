@@ -126,6 +126,20 @@ export const api = {
     },
 
     /**
+     * ログインしているユーザーが今月にカウントしたすべての回数を取得できる関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @param user_id - ユーザーID (数値型)
+     * @returns 成功:{'count': number} | 失敗:{"error": string}
+     * @example
+     * await api.monthly(user?.id)
+     */
+    monthly: (user_id: number) => {
+        return request<{'count': number}>(`/events/monthly?user_id=${user_id}`, {
+            method: "GET"
+        })
+    },
+
+    /**
      * ログアウトする時に使用する関数
      * ※ 非同期(async)があるところでしかダメ
      * @returns 成功:{ ok: true } | 失敗:{"error": string}
