@@ -24,7 +24,7 @@ export default function LogIn() {
         try {
             await api.login(email, password);
             const me = await api.me();
-            if (me) {
+            if (!me) {
                 throw new Error
             }
             await refresh(); // AuthProvider側のuserも更新する

@@ -45,7 +45,7 @@ export default function SignUp() {
         setLoading(true)
         try {
             const data = await api.signup(mail, pass, name)
-            if (data) {
+            if (!data) {
                 throw new Error
             }
             // フォームを軽くリセット
