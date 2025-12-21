@@ -46,24 +46,57 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 export const api = {
+    /**
+     * ログインする時に使用する関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @param email - メールアドレス(文字型)
+     * @param password - 自分だけがわかるパスワード(文字型)
+     * @param display_name - このアプリで使う名前
+     * @returns 成功:{ User } | 失敗:{"error": string}
+     * @example
+     * await api.signup(mail, pass, name)
+     */
     signup: (email: string, password: string, display_name: string) =>
     request<User>("/users", {
         method: "POST",
         body: JSON.stringify({ email, password, display_name }),
     }),
 
+    /**
+     * ログインする時に使用する関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @param email - メールアドレス(文字型)
+     * @param password - 自分だけがわかるパスワード(文字型)
+     * @returns 成功:{ User } | 失敗:{"error": string}
+     * @example
+     * await api.login(email, password)
+     */
     login: (email: string, password: string) =>
     request<User>("/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
     }),
 
+    /**
+     * ログインしたら Cookie にトークンが保存されるのでそれを使用して自分のデータを取ってくる
+     * ※ 非同期(async)があるところでしかダメ
+     * @returns 成功:{ User } | 失敗:{"error": string}
+     * @example
+     * await api.me()
+     */
     me: () => 
     request<User>("/me", {
         credentials: "include",
     }),
 
-    // 要素が必要になれば増やす
+    /**
+     * カウント「1」をDBに追加する関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @param user_id - ユーザーID (数値型)
+     * @returns 成功:{ EventType } | 失敗:{"error": string}
+     * @example
+     * await api.addCount(user?.id)
+     */
     addCount: (user_id: number) => {
         const newEvent = create()
 
@@ -78,5 +111,26 @@ export const api = {
         })
     },
 
+    /**
+     * ログインしているユーザーが今までにカウントしたすべての回数を取得できる関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @param user_id - ユーザーID (数値型)
+     * @returns 成功:{'count': number} | 失敗:{"error": string}
+     * @example
+     * await api.allCount(user?.id)
+     */
+    allCount: (user_id: number) => {
+        return request<{'count': number}>(`/events/allCount?user_id=${user_id}`, {
+            method: "GET"
+        })
+    },
+
+    /**
+     * ログアウトする時に使用する関数
+     * ※ 非同期(async)があるところでしかダメ
+     * @returns 成功:{ ok: true } | 失敗:{"error": string}
+     * @example
+     * await api.logout()
+     */
     logout: () => request<{ ok: true }>("/logout", { method: "POST" }),
 }
