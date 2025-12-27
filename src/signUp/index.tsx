@@ -1,17 +1,20 @@
 import { useState } from "react"
-import { api, type User } from "../api"
+import { api } from "../api"
 import { useNavigate } from "react-router-dom"
+import AuthImg from "../components/AuthImg"
+import CustomInput from "../components/CustomInput"
+import styles from './styles.module.css'
+import Button from "../components/Button"
+import IconGroup from "../components/IconGroup"
 
 export default function SignUp() {
     const [mail, setMail] = useState('') 
     const [pass, setPass] = useState('') 
     const [secondPass, setSecondPass] = useState('') 
     const [name, setName] = useState('') 
-
+    const [conPass, setConPass] = useState<boolean>(false)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string>("")
-
-    const [createdUser, setCreatedUser] = useState<null | User>(null)
 
     const navigate = useNavigate()
 
@@ -40,14 +43,15 @@ export default function SignUp() {
         return
         }
         setLoading(true)
-        setCreatedUser(null)
         try {
             const data = await api.signup(mail, pass, name)
-            setCreatedUser(data)
+            if (!data) {
+                throw new Error
+            }
             // フォームを軽くリセット
             setPass('')
             setSecondPass('')
-            navigate('/signIn')
+            navigate('/logIn')
         } catch (e) {
             setError(`登録に失敗しました:${e}`)
         } finally {
@@ -57,41 +61,24 @@ export default function SignUp() {
 
     return(
         <>
-            <div style={{display:"grid", gap: 12, maxWidth: 420}}>
-                <div>
-                    <label>メールアドレス</label><br/>
-                    <input type="email" value={mail} onChange={(e) => {setMail(e.target.value)}} />
+            <AuthImg />
+            <div className={styles.mainContent}>
+                <div className={styles.contentWrap}>
+                    <CustomInput label="メールアドレス" value={mail} onChange={(e) => setMail(e.target.value)} isPass={false} />
+                    <CustomInput label="パスワード" value={pass} onChange={(e) => setPass(e.target.value)} isPass={true} TorP={conPass} onClick={() => setConPass(conPass ? false : true)}/>
+                    <CustomInput label="2回目パスワード" value={secondPass} onChange={(e) => setSecondPass(e.target.value)} isPass={true} TorP={conPass} onClick={() => setConPass(conPass ? false : true)}/>
+                    <CustomInput label="ユーザーネーム" value={name} onChange={(e) => setName(e.target.value)} isPass={false} />
+                    <div className={styles.contentBtn}>
+                        <Button label={loading ? "登録中..." : "新規登録"} onClick={handleSignup} disabled={loading}/>
+                        {error && <p className={styles.msg}>{error}</p>}
+                    </div>
                 </div>
-                <div>
-                    <label>パスワード</label><br/>
-                    <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} />
+                <div className={styles.IconGroup}>
+                    <IconGroup msg={error} isLogin={false} />
                 </div>
-                <div>
-                    <label>2回目パスワード</label><br/>
-                    <input type="password" value={secondPass} onChange={(e) => setSecondPass(e.target.value)} />
+                <div className={styles.btnWrap}>
+                    <Button label={"ログインへ"} onClick={() => navigate('/login')}/>
                 </div>
-                <div>
-                    <label>ユーザーネーム</label><br/>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
-
-                <button onClick={handleSignup} disabled={loading}>
-                    {loading ? "登録中..." : "新規登録"}
-                </button>
-
-                {error && <p style={{color:"crimson"}}>{error}</p>}
-
-                {createdUser && (
-                <div style={{padding:12, border:"1px solid #ddd", borderRadius:8}}>
-                    <p>登録に成功しました！</p>
-                    <ul style={{margin:0, paddingLeft:18}}>
-                        <li>ID: {createdUser.id}</li>
-                        <li>Email: {createdUser.email}</li>
-                        <li>Display Name: {createdUser.display_name}</li>
-                        {createdUser.created_at && <li>Created At: {createdUser.created_at}</li>}
-                    </ul>
-                </div>
-                )}
             </div>
         </>
     )
