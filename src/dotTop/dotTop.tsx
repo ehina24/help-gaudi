@@ -30,11 +30,11 @@ export default function DotTop(){
     };
 
     const getImageSrc=(v:string)=>{
-        return `images/${v}.svg`
+        return `public/${v}.svg`
     };
 
     return(
-        // <div className={styles.bgWrapper}>
+        <div className={styles.bgWrapper}>
             <div className={styles.container}>
                 {rows.map((row,rowIndex)=>
                     row.map((v,colIndex)=>(
