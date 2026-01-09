@@ -12,7 +12,7 @@
     height: 100vh;
     aspect-ratio: 8/20;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns:repeat(8 40px)
     /*grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;*/
     /*background-color:#33FFCF;*/
 }
