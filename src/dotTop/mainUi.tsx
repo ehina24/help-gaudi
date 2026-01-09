@@ -1,4 +1,3 @@
-    import { useState } from "react";
     import DotTop from "./dotTop";
     //import TextBox from "../components/TextBox/TextBox";
     import styles from "./ui.module.css";
