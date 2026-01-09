@@ -34,7 +34,7 @@ export default function DotTop(){
     };
 
     return(
-        // <div className={styles.bgWrapper}>
+        <div className={styles.bgWrapper}>
             <div className={styles.container}>
                 {rows.map((row,rowIndex)=>
                     row.map((v,colIndex)=>(
