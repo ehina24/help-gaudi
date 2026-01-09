@@ -34,7 +34,7 @@ export default function DotTop(){
     };
 
     return(
-        <div className={styles.bgWrapper}>
+        // <div className={styles.bgWrapper}>
             <div className={styles.container}>
                 {rows.map((row,rowIndex)=>
                     row.map((v,colIndex)=>(
@@ -42,10 +42,9 @@ export default function DotTop(){
                             src={getImageSrc(v)}
                             className={`${styles.cell} ${getClass(v)}`} 
                             />
-                            
                     ))
                 )}
             </div>
-        </div>
+        // </div>
     )
 }

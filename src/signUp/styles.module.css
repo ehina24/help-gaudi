@@ -1,0 +1,28 @@
+.mainContent {
+    width: 100%;
+    padding-top: 8px;
+
+    .contentWrap {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    
+        .contentBtn {
+            margin-top: 16px;
+    
+            .msg {
+                margin: 0;
+                color: red;
+            }
+        }
+    }
+    .IconGroup {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .btnWrap {
+        margin-top: 32px;
+    }
+}

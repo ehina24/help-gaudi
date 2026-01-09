@@ -1,12 +1,3 @@
-.bgWrapper {
-    position: fixed;
-    inset: 0;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    overflow: hidden;
-}
 
 .container{
     height: 100vh;
@@ -15,6 +6,16 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     /*grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;*/
     /*background-color:#33FFCF;*/
+    /*background-color:#33FFCF;*/
+
+    div {
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
 }
 
 .cell{

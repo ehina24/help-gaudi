@@ -1,0 +1,10 @@
+.grid {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    border: 1px solid tomato;
+
+    .col {
+        border: 1px solid skyblue;
+    }
+}
