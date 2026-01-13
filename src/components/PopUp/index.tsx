@@ -14,80 +14,68 @@
     onClose,
     }: PopupProps) {
     return (
-        <div className="messageBox" onClick={onClose}>
-        {mode === 'simple' && (
-            <p>
-            {simpleType === 'normal' && (
+        <div className="popupRoot" onClick={onClose}>
+        <div className="speechBubble">
+            <div className="speechText">
+            {mode === 'simple' && (
                 <>
-                よく頑張りましたね。<br />
-                あなたの努力、ちゃんと見えてますよ
+                {simpleType === 'normal' && (
+                    <>
+                    よく頑張りましたね。<br />
+                    あなたの努力ちゃんと見えてますよ
+                    </>
+                )}
+                {simpleType === 'praiseCount' && (
+                    <>
+                    今日の褒め数はこちらです。<br />
+                    ちゃんと積み重なっていますよ
+                    </>
+                )}
+                {simpleType === 'praiseMe' && (
+                    <>
+                    今日もここまで来たあなたはえらい。<br />
+                    自分をたくさん褒めてあげてください
+                    </>
+                )}
                 </>
             )}
 
-            {simpleType === 'praiseCount' && (
+            {mode === 'select' && (
                 <>
-                今日の褒め数はこちらです。<br />
-                ちゃんと積み重なっていますよ
+                いかがなさいますか？
                 </>
             )}
-
-            {simpleType === 'praiseMe' && (
-                <>
-                今日もここまで来たあなたはえらい。<br />
-                自分をたくさん褒めてあげてください
-                </>
-            )}
-            </p>
-        )}
-
-        {mode === 'select' && (
-            <>
-            <p>
-                こんにちは<br />
-                どうされました?
-            </p>
-
-            <div className="messageRes">
-                <div>
-                <div>
-                    <div className="triangle"></div>
-                    <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onChangeSimple('praiseCount');
-                    }}
-                    >
-                    ▶ 今日の褒め数
-                    </button>
-                </div>
-
-                <div>
-                    <div className="triangle"></div>
-                    <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onChangeSimple('praiseMe');
-                    }}
-                    >
-                    褒めて
-                    </button>
-                </div>
-
-                <div>
-                    <div className="triangle"></div>
-                    <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onClose();
-                    }}
-                    >
-                    なにもない
-                    </button>
-                </div>
-                </div>
             </div>
-            </>
-        )}
+
+            {mode === 'select' && (
+            <div className="choiceBox" onClick={(e) => e.stopPropagation()}>
+                <button
+                className="choiceItem"
+                onClick={() => onChangeSimple('praiseCount')}
+                >
+                <span className='arrow'>▶</span>
+                今日の褒め数
+                </button>
+
+                <button
+                className="choiceItem"
+                onClick={() => onChangeSimple('praiseMe')}
+                >
+                <span className='arrow'>▶</span>
+                褒めて
+                </button>
+
+                <button
+                className="choiceItem"
+                onClick={onClose}
+                >
+                <span className='arrow'>▶</span>
+                何もない
+                </button>
+
+            </div>
+            )}
+        </div>
         </div>
     );
     }

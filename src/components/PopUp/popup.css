@@ -1,45 +1,75 @@
-.messageBox{
-    background-color: #d9d9d9;
-    width: 286px;
-    height: 273px;
-    position: relative;
-    p{
-        color: #000;
-        height: 206px;
-        padding:20px 10px;
+    .popupRoot {
+    position: fixed;
+    inset: 0;
     }
-}
 
-.messageRes{
-    background-color: #7e7e7e;
-    width: 150px;
-    height:147px;
+    /*吹き出し*/
+    .speechBubble {
     position: absolute;
-    top:50%;
-    left:50%;
-    > div{
-        display: flex;
-        flex-direction: column;
-        align-items:start;
-        padding: 40px;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
 
-        > div {
-            display: flex;
-            .triangle{
-                width:10px;
-                height:20px;
-                background-color: #fff;
-                clip-path: polygon(0 0, 0% 100%, 100% 50%);
-                opacity: 0;
-                &:hover{
-                    opacity:1;
-                }
-            }
-        }
+    width: 520px;
+    min-height: 240px;
+
+    background-image: url('/popup/speech_bubble.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    padding: 32px 36px;
+    box-sizing: border-box;
+
+    pointer-events: auto;
+
     }
-    button{
-        text-align: center;
-        background-color: #7e7e7e;
-        padding: 0;
+
+    .speechText {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 14px;
+    color: #fff;
     }
-}
+
+    .choiceBox {
+    position: absolute;
+    right: 88px;
+    bottom: -56px;
+
+    width: 160px;
+    padding: 16px;
+
+    background-image: url('/popup/choice.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    }
+
+    .choiceItem {
+    background: none;
+    border: none;
+
+    text-align: left;
+    color: #fff;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 14px;
+
+    cursor: pointer;
+    }
+
+
+/*ホバーする前*/
+    .choiceItem .arrow {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+/*ホバーした時*/
+    .choiceItem:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+    }
+
