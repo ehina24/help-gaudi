@@ -68,7 +68,7 @@ export default function DotTop(){
     };
 
     const getImageSrc=(v:string)=>{
-        return `public/${v}.svg`
+        return `/${v}.svg`
     };
 
     return(
