@@ -27,3 +27,11 @@
     object-fit: contain;
     display: block;
 }
+
+    .popupWrapper {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    }
