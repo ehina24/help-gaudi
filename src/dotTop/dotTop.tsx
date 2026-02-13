@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import styles from './style.module.css';
 import Popup from '../components/PopUp';
+import { api } from '../api';
+import { useAuth } from '../hooks/useAuth';
 
 
 export default function DotTop(){
     const [isOpen, setIsOpen] = useState(false);
     const [popupMode, setPopupMode] = useState<'simple' | 'select'>('simple');
     const [simpleType, setSimpleType] = useState<'normal' | 'praiseCount' | 'praiseMe'>('normal');
+    const [monthCou, setMonthCou] = useState<number>(0)
+    const { user, loading } = useAuth();
 
+    if (loading) return null;
+    if (!user) return null; 
+
+    const userId = user.id; 
     const btnCells = [
     '17-2','17-3','17-4','17-5','17-6','17-7',
     '18-2','18-3','18-4','18-5','18-6','18-7',
@@ -26,16 +34,31 @@ export default function DotTop(){
     ];
 
     //人を押した時
-    const handleClick = (v: string) => {
+    const handleClick = async (v: string) => {
         if (personCells.includes(v)) {
             setPopupMode('select');
             setIsOpen(true);
+
+            try {
+                const res = await api.monthly(userId)
+                console.log(res);
+                setMonthCou(res.count)
+            } catch (error) {
+                console.log(error);
+            }
             return;
         }
     //ボタンを押した時
         if(btnCells.includes(v)){
             setPopupMode('simple');
             setIsOpen(true);
+
+            try {
+                const res = await api.addCount(userId)
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
             return;
         }
     };
@@ -87,23 +110,22 @@ export default function DotTop(){
                 )}
             </div>
 
-    {isOpen && (
-        <div className={styles.popupWrapper}
-                onClick={()=>setIsOpen(false)}>
-            <div onClick={(e) => e.stopPropagation()}>
-        <Popup
-        mode={popupMode}
-        simpleType={simpleType}
-        onChangeSimple={(type) => {
-            setSimpleType(type);
-            setPopupMode('simple');
-        }}
-        onClose={() => setIsOpen(false)}
-        />
-            </div>
+            {isOpen && (
+                <div className={styles.popupWrapper} onClick={()=>setIsOpen(false)}>
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <Popup
+                        mode={popupMode}
+                        simpleType={simpleType}
+                        onChangeSimple={(type) => {
+                            setSimpleType(type);
+                            setPopupMode('simple');
+                        }}
+                        monthCou={monthCou}
+                        onClose={() => setIsOpen(false)}
+                        />
+                    </div>
+                </div>
+            )}
         </div>
-        )}
-        </div>
-
     )
 }

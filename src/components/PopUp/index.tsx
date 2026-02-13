@@ -1,18 +1,23 @@
-    import './popup.css';
+import { compliment } from '../../utils/compliment';
+import './popup.css';
 
-    type PopupProps = {
+type PopupProps = {
     mode: 'simple' | 'select';
     simpleType: 'normal' | 'praiseCount' | 'praiseMe';
     onChangeSimple: (type: 'praiseCount' | 'praiseMe') => void;
     onClose: () => void;
-    };
+    monthCou?: number
+};
 
-    export default function Popup({
+export default function Popup({
     mode,
     simpleType,
     onChangeSimple,
     onClose,
-    }: PopupProps) {
+    monthCou
+}: PopupProps) {
+    const randomNum = Math.floor(Math.random() * compliment.length)
+
     return (
         <div className="popupRoot" onClick={onClose}>
         <div className="speechBubble">
@@ -20,22 +25,20 @@
             {mode === 'simple' && (
                 <>
                 {simpleType === 'normal' && (
-                    <>
-                    よく頑張りましたね。<br />
-                    あなたの努力ちゃんと見えてますよ
-                    </>
+                    <p style={{whiteSpace: "pre-line", margin: "0 auto", width: "55%"}}>
+                        {compliment[randomNum]}
+                    </p>
                 )}
                 {simpleType === 'praiseCount' && (
                     <>
-                    今日の褒め数はこちらです。<br />
+                    今月の褒め数は{monthCou}です。<br />
                     ちゃんと積み重なっていますよ
                     </>
                 )}
                 {simpleType === 'praiseMe' && (
-                    <>
-                    今日もここまで来たあなたはえらい。<br />
-                    自分をたくさん褒めてあげてください
-                    </>
+                    <p style={{whiteSpace: "pre-line", margin: "0 auto", width: "55%"}}>
+                        {compliment[randomNum]}
+                    </p>
                 )}
                 </>
             )}
@@ -54,7 +57,7 @@
                 onClick={() => onChangeSimple('praiseCount')}
                 >
                 <span className='arrow'>▶</span>
-                今日の褒め数
+                今月の褒め数
                 </button>
 
                 <button
